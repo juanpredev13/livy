@@ -23,25 +23,25 @@ export default function SignUpForm() {
         try {
             const provider = new GoogleAuthProvider()
             await signInWithPopup(auth, provider)
-            router.push('/dashboard') // Redirect to dashboard after successful sign-up
+            router.push('/login') // Redirige al inicio de sesión después de un registro exitoso
         } catch (error) {
-            setError('Failed to sign up with Google. Please try again.')
-            console.error('Google sign-up error:', error)
+            setError('Error al registrarse con Google. Inténtalo de nuevo.')
+            console.error('Error al registrarse con Google:', error)
         }
     }
 
     const handleEmailSignUp = async (e: React.FormEvent) => {
         e.preventDefault()
         if (password !== confirmPassword) {
-            setError('Passwords do not match')
+            setError('Las contraseñas no coinciden')
             return
         }
         try {
             await createUserWithEmailAndPassword(auth, email, password)
-            router.push('/dashboard') // Redirect to dashboard after successful sign-up
+            router.push('/login') // Redirige al inicio de sesión después de un registro exitoso
         } catch (error) {
-            setError('Failed to sign up. Please try again.')
-            console.error('Email sign-up error:', error)
+            setError('Error al registrarse. Inténtalo de nuevo.')
+            console.error('Error al registrarse con correo electrónico:', error)
         }
     }
 
@@ -54,23 +54,23 @@ export default function SignUpForm() {
                 const address = await signer.getAddress()
                 setWalletAddress(address)
 
-                // Save the wallet address to Firebase Realtime Database
+                // Guarda la dirección de la cartera en Firebase Realtime Database
                 await saveWalletAddress(address);
-                router.push('/dashboard') //
-                console.log('MetaMask wallet connected and saved:', address)
+                router.push('/login') // 
+                console.log('Cartera MetaMask conectada y guardada:', address)
             } catch (error) {
-                setError('Failed to connect to MetaMask or save wallet address. Please try again.')
-                console.error('MetaMask connection error:', error)
+                setError('Error al conectar con MetaMask o guardar la dirección de la cartera. Inténtalo de nuevo.')
+                console.error('Error de conexión con MetaMask:', error)
             }
         } else {
-            setError('MetaMask not detected. Please install MetaMask and try again.')
+            setError('MetaMask no detectado. Instala MetaMask e inténtalo de nuevo.')
         }
     }
     return (
         <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-purple-100 via-pink-100 to-red-100'>
             <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm shadow-md">
                 <CardHeader>
-                    <CardTitle className="text-2xl font-light text-center text-gray-800">Sign Up for Livy</CardTitle>
+                    <CardTitle className="text-2xl font-light text-center text-gray-800">Regístrate para Livy</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     {error && <p className="text-red-500 text-center">{error}</p>}
@@ -79,7 +79,7 @@ export default function SignUpForm() {
                         className="w-full text-gray-600 hover:bg-gray-50 transition-colors"
                         onClick={handleGoogleSignUp}
                     >
-                        <FaGoogle className="mr-2" /> Sign Up with Google
+                        <FaGoogle className="mr-2" /> Regístrate con Google
                     </Button>
 
                     <div className="relative">
@@ -87,14 +87,14 @@ export default function SignUpForm() {
                             <span className="w-full border-t border-gray-200" />
                         </div>
                         <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-white px-2 text-gray-400">Or</span>
+                            <span className="bg-white px-2 text-gray-400">O</span>
                         </div>
                     </div>
 
                     <form onSubmit={handleEmailSignUp} className="space-y-4">
                         <Input
                             type="email"
-                            placeholder="Email"
+                            placeholder="Correo electrónico"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -102,7 +102,7 @@ export default function SignUpForm() {
                         />
                         <Input
                             type="password"
-                            placeholder="Password"
+                            placeholder="Contraseña"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -110,14 +110,14 @@ export default function SignUpForm() {
                         />
                         <Input
                             type="password"
-                            placeholder="Confirm Password"
+                            placeholder="Confirmar contraseña"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                             className="bg-white/50 border-gray-200 focus:ring-1 focus:ring-gray-400 transition-shadow"
                         />
                         <Button type="submit" className="w-full bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white transition-colors">
-                            Sign Up
+                            Regístrate
                         </Button>
                     </form>
 
@@ -126,11 +126,11 @@ export default function SignUpForm() {
                         className="w-full text-gray-600 hover:bg-gray-50 transition-colors"
                         onClick={handleMetaMaskConnect}
                     >
-                        {walletAddress ? `Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect MetaMask'}
+                        {walletAddress ? `Conectado: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Conectar MetaMask'}
                     </Button>
 
                     <p className="text-sm text-center text-gray-600">
-                        Already have an account? <a href="/login" className="text-gray-800 hover:underline">Log in</a>
+                        ¿Ya tienes una cuenta? <a href="/login" className="text-gray-800 hover:underline">Iniciar sesión</a>
                     </p>
                 </CardContent>
             </Card>

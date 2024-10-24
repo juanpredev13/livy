@@ -21,10 +21,10 @@ export default function LoginForm() {
     try {
       const provider = new GoogleAuthProvider()
       await signInWithPopup(auth, provider)
-      router.push('/dashboard') // Redirect to dashboard after successful login
+      router.push('/dashboard') // Redirige al dashboard después de un inicio de sesión exitoso
     } catch (error) {
-      setError('Failed to sign in with Google. Please try again.')
-      console.error('Google sign-in error:', error)
+      setError('Error al iniciar sesión con Google. Inténtalo de nuevo.')
+      console.error('Error de inicio de sesión con Google:', error)
     }
   }
 
@@ -32,10 +32,10 @@ export default function LoginForm() {
     e.preventDefault()
     try {
       await signInWithEmailAndPassword(auth, email, password)
-      router.push('/dashboard') // Redirect to dashboard after successful login
+      router.push('/dashboard') // Redirige al dashboard después de un inicio de sesión exitoso
     } catch (error) {
-      setError('Failed to sign in. Please check your email and password.')
-      console.error('Email sign-in error:', error)
+      setError('Error al iniciar sesión. Por favor, revisa tu correo y contraseña.')
+      console.error('Error de inicio de sesión con correo electrónico:', error)
     }
   }
 
@@ -47,16 +47,16 @@ export default function LoginForm() {
         const signer = await provider.getSigner()
         const address = await signer.getAddress()
         setWalletAddress(address)
-        router.push('/dashboard') //
-        // Here you would typically verify the wallet address with your backend
-        // and create or update a user account associated with this address
-        console.log('MetaMask wallet connected:', address)
+        router.push('/dashboard') // 
+        // Aquí normalmente verificarías la dirección de la cartera con tu backend
+        // y crearías o actualizarías una cuenta de usuario asociada a esta dirección
+        console.log('Cartera MetaMask conectada:', address)
       } catch (error) {
-        setError('Failed to connect to MetaMask. Please try again.')
-        console.error('MetaMask connection error:', error)
+        setError('Error al conectar con MetaMask. Inténtalo de nuevo.')
+        console.error('Error de conexión con MetaMask:', error)
       }
     } else {
-      setError('MetaMask not detected. Please install MetaMask and try again.')
+      setError('MetaMask no detectado. Por favor, instala MetaMask e inténtalo de nuevo.')
     }
   }
 
@@ -64,7 +64,7 @@ export default function LoginForm() {
     <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-purple-100 via-pink-100 to-red-100'>
       <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm shadow-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-light text-center text-gray-800">Login to Livy</CardTitle>
+          <CardTitle className="text-2xl font-light text-center text-gray-800">Iniciar sesión en Livy</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           {error && <p className="text-red-500 text-center">{error}</p>}
@@ -73,7 +73,7 @@ export default function LoginForm() {
             className="w-full text-gray-600 hover:bg-gray-50 transition-colors"
             onClick={handleGoogleLogin}
           >
-            <FaGoogle className="mr-2" /> Continue with Google
+            <FaGoogle className="mr-2" /> Continuar con Google
           </Button>
 
           <div className="relative">
@@ -81,14 +81,14 @@ export default function LoginForm() {
               <span className="w-full border-t border-gray-200" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-400">Or</span>
+              <span className="bg-white px-2 text-gray-400">O</span>
             </div>
           </div>
 
           <form onSubmit={handleEmailLogin} className="space-y-4">
             <Input
               type="email"
-              placeholder="Email"
+              placeholder="Correo electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -96,14 +96,14 @@ export default function LoginForm() {
             />
             <Input
               type="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               className="bg-white/50 border-gray-200 focus:ring-1 focus:ring-gray-400 transition-shadow"
             />
             <Button type="submit" className="w-full bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white transition-colors">
-              Login
+              Iniciar sesión
             </Button>
           </form>
 
@@ -112,11 +112,11 @@ export default function LoginForm() {
             className="w-full text-gray-600 hover:bg-gray-50 transition-colors"
             onClick={handleMetaMaskLogin}
           >
-            {walletAddress ? `Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect MetaMask'}
+            {walletAddress ? `Conectado: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Conectar MetaMask'}
           </Button>
 
           <p className="text-sm text-center text-gray-600">
-            Don&apos;t have an account? <a href="/signup" className="text-gray-800 hover:underline">Sign up</a>
+            ¿No tienes una cuenta? <a href="/signup" className="text-gray-800 hover:underline">Regístrate</a>
           </p>
         </CardContent>
       </Card>
