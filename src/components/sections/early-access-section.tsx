@@ -16,7 +16,6 @@ export default function EarlyAccessBanner() {
     setIsLoading(true)
 
     try {
-      // Save email to Firebase Firestore
       const earlyAccessCollection = collection(firestore, 'early')
       await addDoc(earlyAccessCollection, {
         email: email,
@@ -31,7 +30,7 @@ export default function EarlyAccessBanner() {
     }
 
     setIsLoading(false)
-    setTimeout(() => setNotification(''), 5000) // Clear notification after 5 seconds
+    setTimeout(() => setNotification(''), 5000)
   }
 
   return (
