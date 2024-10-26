@@ -93,7 +93,7 @@ export default function FeatureSection() {
             </CardContent>
           </Card>
           <Card className="relative overflow-hidden bg-[#F8FAFC] flex flex-col">
-            <CardContent className=" flex-grow">
+            <CardContent className="flex-grow">
               <h2 className="text-xl font-bold mb-4">Experiencias móviles prioritarias</h2>
               <p className="mb-4 text-gray-600">
                 Ofrece experiencias NFT fluidas en movimiento. Nuestra plataforma optimizada para móviles asegura
