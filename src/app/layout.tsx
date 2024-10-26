@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Livy",
-  description: "Genere tus campañas onchain",
+  description: "Genera tus campañas onchain",
 };
 
 export default function RootLayout({
