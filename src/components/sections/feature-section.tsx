@@ -95,7 +95,7 @@ export default function FeatureSection() {
               </p>
               <div className="absolute bottom-0 right-0 w-[570px] h-1/2">
                 <Image
-                  src="/estados.png"
+                  src="/estados.svg"
                   alt="Interfaz móvil"
                   width={300}
                   height={300}
