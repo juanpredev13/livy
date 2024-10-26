@@ -1,16 +1,34 @@
 "use client"
 
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChevronRight } from "lucide-react"
+import GassTitle from "@/components/glass-header"
 
 export default function FeatureSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const featuresRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setIsVisible(true)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (featuresRef.current) {
+      observer.observe(featuresRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
   }, [])
 
   const activeNFTCampaigns = [
@@ -31,7 +49,7 @@ export default function FeatureSection() {
     }
   ]
 
-  const features = ['Campañas', 'Recompensas', 'Eventos', 'NFTs']
+  const features = ['Campañas', 'Eventos', 'NFTs', 'Recompensas']
 
   const collaborators = [
     { name: "Restaurante 12/0", status: "activo" },
@@ -40,7 +58,7 @@ export default function FeatureSection() {
   ]
 
   return (
-    <section className="relative w-full py-12 overflow-hidden bg-slate-50">
+    <section className="relative min-h-screen h-[100vh w-full py-12 overflow-hidden bg-slate-50">
       <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-[#C19EFA]/30 to-transparent blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-[#FE71EB]/30 to-transparent blur-3xl"></div>
 
@@ -53,7 +71,10 @@ export default function FeatureSection() {
           >
             Características esenciales que potencian tus
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 mb-16">
+          <div 
+            ref={featuresRef}
+            className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 mb-16"
+          >
             {features.map((feature, index) => (
               <div
                 key={feature}
