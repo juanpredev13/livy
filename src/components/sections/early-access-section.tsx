@@ -16,7 +16,7 @@ export default function EarlyAccessBanner() {
     setIsLoading(true)
 
     try {
-      const earlyAccessCollection = collection(firestore, 'early')
+      const earlyAccessCollection = collection(firestore, ' ewslatter')
       await addDoc(earlyAccessCollection, {
         email: email,
         timestamp: new Date()
