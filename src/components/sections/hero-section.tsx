@@ -4,17 +4,18 @@ import Image from "next/image"
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <header className="container mx-auto px-4 py-6">
+    <div className="min-h-screen flex flex-col  ">
+      <div className="absolute w-full h-[100vh] flex items-center justify-center rounded-lg overflow-hidden bg-slate-50 ">
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-[#C19EFA]/30 blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#FE71EB]/30 to-transparent blur-3xl"></div>
+      </div>
+      <header className="container mx-auto px-4 py-6 z-0">
         <Navigation />
       </header>
-      <main className="flex-grow flex items-center justify-center relative mx-8 overflow-hidden ">
-        <div className="absolute w-full m-2 h-[80vh] flex items-center justify-center rounded-lg overflow-hidden bg-slate-50">
-          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-[#C19EFA]/30 to-transparent blur-3xl"></div>
-          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#FE71EB]/30 to-transparent blur-3xl"></div>
-        </div>
-        <div className="relative z-10 text-center px-4">
-          <div className="mb-8">  
+      <main className="flex-grow flex items-center justify-center  ">
+
+        <div className=" z-10 text-center px-4">
+          <div className="mb-8">
             <Image
               src="/livy-logo.svg"
               alt="Livy Logo"

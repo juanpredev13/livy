@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from "next/link"
+import Image from 'next/image';
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from 'lucide-react'
@@ -18,10 +19,12 @@ export default function Navigation() {
 
   return (
     <nav className="flex justify-between items-center w-full">
-      <Link href="/" className="text-purple-600 text-2xl font-bold">
-        Livy
-      </Link>
-      
+      <Image
+        src="/livy-logo-1.png"
+        alt="Livy Logo"
+        width={100}
+        height={50}
+      />
       {/* Desktop Navigation */}
       <ul className="hidden md:flex space-x-6">
         {navItems.map((item) => (
