@@ -137,7 +137,7 @@ export default function FeatureSection() {
                 Obtén insights valiosos sobre el comportamiento de tus clientes. Visualiza patrones de consumo y
                 crea perfiles detallados para personalizar tus estrategias de fidelización.
               </p>
-              <div className="absolute bottom-0 right-0 w-[475px] ">
+              <div className="absolute bottom-0 right-0 w-[370px] md:w-[475px] ">
                 <Image
                   src="/map.png"
                   alt="Mapa de consumo"
