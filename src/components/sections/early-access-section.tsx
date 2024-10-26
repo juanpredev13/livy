@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { db } from '@/lib/firebase'
+import { firestore } from '@/lib/firebase'
 import { collection, addDoc } from 'firebase/firestore'
 
 export default function EarlyAccessBanner() {
@@ -16,8 +16,9 @@ export default function EarlyAccessBanner() {
     setIsLoading(true)
 
     try {
-      // Save email to Firebase
-      await addDoc(collection(db, 'early'), {
+      // Save email to Firebase Firestore
+      const earlyAccessCollection = collection(firestore, 'early')
+      await addDoc(earlyAccessCollection, {
         email: email,
         timestamp: new Date()
       })
