@@ -16,10 +16,9 @@ export default function EarlyAccessBanner() {
     setIsLoading(true)
 
     try {
-      const earlyAccessCollection = collection(firestore, ' ewslatter')
+      const earlyAccessCollection = collection(firestore, 'early')
       await addDoc(earlyAccessCollection, {
         email: email,
-        timestamp: new Date()
       })
 
       setNotification('Gracias por tu interés. Te contactaremos pronto.')
