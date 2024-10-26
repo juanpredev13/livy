@@ -21,6 +21,11 @@ export default function FeatureSection() {
       icon: "/sello-3.png"
     }
   ]
+  const collaborators = [
+    { name: "Restaurante 12/0", status: "activo" },
+    { name: "Bacano Escalante", status: "activo" },
+    { name: "Isolina", status: "en proceso" }
+  ]
 
   return (
     <section className="relative w-full py-12 overflow-hidden bg-slate-50">
@@ -87,20 +92,41 @@ export default function FeatureSection() {
             </CardContent>
           </Card>
           <Card className="relative overflow-hidden bg-[#F8FAFC]">
-            <CardContent className="p-8 pb-32">
+            <CardContent className="p-8">
               <h2 className="text-xl font-bold mb-4">Experiencias móviles prioritarias</h2>
               <p className="mb-4 text-gray-600">
                 Ofrece experiencias NFT fluidas en movimiento. Nuestra plataforma optimizada para móviles asegura
                 que tus clientes puedan participar en tus campañas en cualquier momento y lugar.
               </p>
-              <div className="absolute bottom-0 right-0 w-[570px] h-1/2">
-                <Image
-                  src="/estados.svg"
-                  alt="Interfaz móvil"
-                  width={300}
-                  height={300}
-                  className="object-cover w-full h-full"
-                />
+              <div className="mt-6 bg-gray-100 rounded-lg p-4">
+                <h3 className="text-lg font-semibold mb-2">Estado de los colaboradores</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="text-left">
+                        <th className="pb-2 pr-4">Nombre de la marca</th>
+                        <th className="pb-2">Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {collaborators.map((collaborator, index) => (
+                        <tr key={index} className="border-t border-gray-200">
+                          <td className="py-2 pr-4">{collaborator.name}</td>
+                          <td className="py-2">
+                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                              collaborator.status === 'activo' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                            }`}>
+                              <span className={`w-2 h-2 mr-1 rounded-full ${
+                                collaborator.status === 'activo' ? 'bg-green-400' : 'bg-yellow-400'
+                              }`}></span>
+                              {collaborator.status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </CardContent>
           </Card>
